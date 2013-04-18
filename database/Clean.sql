@@ -1,0 +1,2 @@
+DROP DATABASE students;
+CREATE DATABASE students;
