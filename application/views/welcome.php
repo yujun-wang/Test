@@ -4,7 +4,7 @@
     <title>Congratulations!</title>
   </head>
   <body>
-    <h1>Home</h1>
-    <h2>Welcome <?php echo $username; ?>!</h2>
+	<h2>Welcome <?php echo $_SESSION['user']['username']; ?>!</h2>
+	<a href="logout">Logout</a>
   </body>
 </html>

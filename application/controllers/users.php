@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class VerifyLogin extends CI_Controller {
+class users extends CI_Controller {
 
   function __construct()
   {
@@ -19,12 +19,11 @@ class VerifyLogin extends CI_Controller {
     if($this->form_validation->run() == FALSE)
     {
       
-      $this->load->view('login_view');
+      $this->load->view('login');
     }
     else
     {
-      
-      redirect('home', 'refresh');
+      redirect('pages', 'refresh');
     }
     
   }
@@ -42,11 +41,12 @@ class VerifyLogin extends CI_Controller {
       $sess_array = array();
       foreach($result as $row)
       {
-        $_SESSION['user'] = array(
+         $_SESSION['user'] = array(
           'id' => $row->id,
           'username' => $row->username
         );
       }
+	  $_SESSION['status']='logged_in';
       return TRUE;
     }
     else
