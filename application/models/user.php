@@ -1,25 +1,20 @@
 <?php
 Class User extends CI_Model
 {
-	function login($username, $password)
+	function validate()
 	{
-		$this -> db -> select('id, username, password');
-		$this -> db -> from('users');
-		$this -> db -> where('username = ' . "'" . $username . "'"); 
-		$this -> db -> where('password = ' . "'" . MD5($password) . "'"); 
-		$this -> db -> limit(1);
-
-		$query = $this -> db -> get();
-
-		if($query -> num_rows() == 1)
+		$this->db->where('username',$this->input->post('username'));
+		$this->db->where('password',md5($this->input->post('password')));
+		$query=$this->db->get('users');
+		
+		if ($query->num_rows==1)
 		{
-			return $query->result();
+			return true;
 		}
 		else
 		{
 			return false;
 		}
-
 	}
 }
 ?>

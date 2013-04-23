@@ -5,6 +5,6 @@
   </head>
   <body>
 	<h2>Welcome <?php echo $_SESSION['user']['username']; ?>!</h2>
-	<a href="logout">Logout</a>
+	<a href="users/logout">Logout</a>
   </body>
 </html>

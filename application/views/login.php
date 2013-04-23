@@ -4,8 +4,13 @@
     <title>Login</title>
   </head>
   <body>
-    <?php echo validation_errors(); ?>
-    <?php echo form_open('login'); ?>
+    <?php echo form_open('users/login'); ?>
+	<?php
+		if ((isset($_SESSION['status']))&&($_SESSION['status']))
+		{
+			echo 'Invalid username or password!'.'<br/>';
+		}
+	?>
       <label for="username">Username:</label>
       <input type="text" size="20" id="username" name="username"/>
       <br/>

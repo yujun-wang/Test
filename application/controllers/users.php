@@ -8,52 +8,28 @@ class users extends CI_Controller {
     $this->load->model('user','',TRUE);
   }
 
-  function index()
+  function login()
   {
-    
-    $this->load->library('form_validation');
-
-    $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-    $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
-	
-    if($this->form_validation->run() == FALSE)
-    {
-      
-      $this->load->view('login');
-    }
-    else
-    {
-      redirect('pages', 'refresh');
-    }
-    
+	$query=$this->user->validate();
+	if ($query==true)
+	{
+		$_SESSION['user'] = array(
+          'username' =>$this->input->post('username')
+        );
+		$_SESSION['status']='logged_in';
+		redirect('welcome');
+	}
+	else
+	{
+		$_SESSION['status']='Invalid username or password!';
+		redirect('pages');
+	}
   }
   
-  function check_database($password)
+  function logout()
   {
-    
-    $username = $this->input->post('username');
-    
-   
-    $result = $this->user->login($username, $password);
-    
-    if($result)
-    {
-      $sess_array = array();
-      foreach($result as $row)
-      {
-         $_SESSION['user'] = array(
-          'id' => $row->id,
-          'username' => $row->username
-        );
-      }
-	  $_SESSION['status']='logged_in';
-      return TRUE;
-    }
-    else
-    {
-      $this->form_validation->set_message('check_database', 'Invalid username or password');
-      return false;
-    }
+	session_destroy();
+	redirect('pages');
   }
 }
 ?>
