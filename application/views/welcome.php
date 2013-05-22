@@ -6,5 +6,6 @@
   <body>
 	<h2>Welcome <?php echo $_SESSION['user']['username']; ?>!</h2>
 	<a href="users/logout">Logout</a>
+	<a href="notes/create_menu">Menus</a>
   </body>
 </html>

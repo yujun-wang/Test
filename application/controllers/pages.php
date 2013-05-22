@@ -4,7 +4,8 @@ class pages extends CI_Controller {
 	function index()
 	{
 		$this->load->helper('form');
-		$this->load->view('login');
+		$data['temp']='hello';
+		$this->load->view('login',$data);
 	}
 }
 ?>

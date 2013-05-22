@@ -5,8 +5,9 @@
   </head>
   <body>
     <?php echo form_open('users/login'); ?>
+    <?php echo '<div>'.$temp.'</div>';?>
 	<?php
-		if ((isset($_SESSION['status']))&&($_SESSION['status']))
+		if ((isset($_SESSION['status']))&&($_SESSION['status']!="logged_in"))
 		{
 			echo 'Invalid username or password!'.'<br/>';
 		}
